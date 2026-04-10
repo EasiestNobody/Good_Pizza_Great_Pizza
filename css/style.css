@@ -1,0 +1,1537 @@
+/* ============================
+   Good Pizza, Great Pizza
+   Pizzeria Website Stylesheet
+   ============================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap');
+
+/* ---- CSS Variables ---- */
+:root {
+  --dough: #F5E6C8;
+  --dough-light: #FFF8ED;
+  --dough-dark: #E8D4A8;
+  --sauce: #C0392B;
+  --sauce-light: #E74C3C;
+  --sauce-dark: #962D22;
+  --cheese: #F1C40F;
+  --cheese-light: #F4D03F;
+  --cheese-dark: #D4AC0D;
+  --olive: #2D5016;
+  --text-dark: #2C1810;
+  --text-medium: #5D4037;
+  --text-light: #8D6E63;
+  --white: #FFFDF7;
+  --black: #1A1A1A;
+  --shadow-soft: 0 4px 20px rgba(44,24,16,0.1);
+  --shadow-medium: 0 8px 32px rgba(44,24,16,0.15);
+  --shadow-heavy: 0 12px 48px rgba(44,24,16,0.2);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-xl: 40px;
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--dough-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dough);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sauce);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sauce-dark);
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: var(--cheese);
+  color: var(--text-dark);
+}
+
+/* ---- SVG Inline Icons ---- */
+.icon-inline {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.loc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: var(--dough-light);
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.loc-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Section icon SVG sizing */
+.section-icon svg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Hero badge icon */
+.hero-badge .icon-inline {
+  margin-right: 2px;
+}
+
+/* Button icon alignment */
+.btn .icon-inline {
+  position: relative;
+  z-index: 1;
+}
+
+/* Addon drink icons */
+.addon-emoji svg {
+  display: block;
+}
+
+/* Cart item inline icons */
+.cart-item-name .icon-inline {
+  margin-right: 4px;
+}
+
+/* Toast icon */
+.toast span .icon-inline {
+  display: block;
+}
+
+/* Packaging features icon alignment */
+.packaging-features li span {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* =====================
+   NAVIGATION
+   ===================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(245, 230, 200, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 3px solid var(--cheese);
+  transition: var(--transition);
+  padding: 0 2rem;
+}
+
+.navbar.scrolled {
+  background: rgba(245, 230, 200, 0.98);
+  box-shadow: var(--shadow-medium);
+}
+
+.nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo .pizza-icon {
+  font-size: 2.2rem;
+  animation: spinSlow 8s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.nav-logo-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--sauce);
+  text-shadow: 2px 2px 0 var(--cheese);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a:hover {
+  background: var(--sauce);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.nav-links a.active {
+  background: var(--sauce);
+  color: var(--white);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: var(--sauce);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* =====================
+   HERO SECTION
+   ===================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--dough) 0%, var(--dough-light) 50%, var(--dough) 100%);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(245, 230, 200, 0.6) 0%,
+    rgba(245, 230, 200, 0.4) 40%,
+    rgba(245, 230, 200, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--sauce);
+  color: var(--white);
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.hero-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  color: var(--sauce);
+  text-shadow: 3px 3px 0 var(--cheese), 6px 6px 0 rgba(0,0,0,0.05);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-tagline {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
+  color: var(--cheese-dark);
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-medium);
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+/* Floating pizza emojis */
+.floating-pizzas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-pizza {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatAround 15s infinite linear;
+  opacity: 0.4;
+}
+
+@keyframes floatAround {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+}
+
+/* Pizza showcase slider in hero */
+.hero-pizza-showcase {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 1s ease-out 1s both;
+}
+
+.hero-pizza-item {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--cheese);
+  box-shadow: var(--shadow-medium);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.hero-pizza-item:hover {
+  transform: scale(1.15) rotate(5deg);
+  border-color: var(--sauce);
+  box-shadow: var(--shadow-heavy);
+}
+
+.hero-pizza-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================
+   BUTTONS
+   ===================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(255,255,255,0.2), transparent);
+  pointer-events: none;
+}
+
+.btn-primary {
+  background: var(--sauce);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(192,57,43,0.4);
+}
+
+.btn-primary:hover {
+  background: var(--sauce-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(192,57,43,0.5);
+}
+
+.btn-secondary {
+  background: var(--cheese);
+  color: var(--text-dark);
+  box-shadow: 0 4px 15px rgba(241,196,15,0.4);
+}
+
+.btn-secondary:hover {
+  background: var(--cheese-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(241,196,15,0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--sauce);
+  border: 3px solid var(--sauce);
+}
+
+.btn-outline:hover {
+  background: var(--sauce);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.btn-sm {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+}
+
+/* =====================
+   SECTION COMMON
+   ===================== */
+.section {
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--sauce);
+  text-shadow: 2px 2px 0 var(--cheese);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--sauce), var(--cheese));
+  border-radius: 2px;
+  margin: 1rem auto 0;
+}
+
+/* =====================
+   MENU SECTION
+   ===================== */
+.menu-section {
+  background: var(--white);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pizza-card {
+  background: var(--dough-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  cursor: pointer;
+  border: 3px solid transparent;
+  position: relative;
+}
+
+.pizza-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+  border-color: var(--cheese);
+}
+
+.pizza-card.selected {
+  border-color: var(--sauce);
+  box-shadow: 0 0 0 3px var(--sauce), var(--shadow-heavy);
+}
+
+.pizza-card-image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.pizza-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.pizza-card:hover .pizza-card-image img {
+  transform: scale(1.08);
+}
+
+.pizza-card-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--sauce);
+  color: var(--white);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.pizza-card-body {
+  padding: 1.5rem;
+}
+
+.pizza-card-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.pizza-card-desc {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.pizza-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pizza-card-price {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: var(--sauce);
+}
+
+.btn-add-cart {
+  background: var(--cheese);
+  color: var(--text-dark);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-add-cart:hover {
+  background: var(--sauce);
+  color: var(--white);
+  transform: scale(1.05);
+}
+
+.btn-add-cart.added {
+  background: var(--olive);
+  color: var(--white);
+}
+
+/* =====================
+   MODAL
+   ===================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  max-width: 550px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-heavy);
+  transform: scale(0.85) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1) translateY(0);
+}
+
+.modal-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.8rem;
+  color: var(--sauce);
+  margin-bottom: 0.5rem;
+}
+
+.modal-price {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--cheese-dark);
+  margin-bottom: 1rem;
+}
+
+.modal-desc {
+  color: var(--text-medium);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: var(--white);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--sauce);
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+/* =====================
+   ORDER SECTION
+   ===================== */
+.order-section {
+  background: linear-gradient(135deg, var(--dough) 0%, var(--dough-light) 100%);
+}
+
+.order-container {
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+}
+
+.order-summary {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.order-summary h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: var(--sauce);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-items {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 2px dashed var(--dough);
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-name {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.cart-item-price {
+  font-family: 'Fredoka One', cursive;
+  color: var(--sauce);
+}
+
+.cart-item-remove {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: var(--transition);
+}
+
+.cart-item-remove:hover {
+  color: var(--sauce);
+  transform: scale(1.2);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 3px solid var(--cheese);
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+}
+
+.cart-total-amount {
+  color: var(--sauce);
+}
+
+.cart-empty {
+  text-align: center;
+  color: var(--text-light);
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.cart-empty .empty-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.order-form {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.order-form h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: var(--sauce);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text-medium);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 3px solid var(--dough);
+  border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: var(--text-dark);
+  background: var(--dough-light);
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--cheese);
+  box-shadow: 0 0 0 4px rgba(241,196,15,0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* =====================
+   PROMOTIONS
+   ===================== */
+.promos-section {
+  background: var(--white);
+}
+
+.promos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.promo-card {
+  background: linear-gradient(135deg, var(--dough-light) 0%, var(--dough) 100%);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(241,196,15,0.1) 0%, transparent 60%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.promo-card:hover::before {
+  opacity: 1;
+}
+
+.promo-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--cheese);
+  box-shadow: var(--shadow-medium);
+}
+
+.promo-day {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: var(--sauce);
+  margin-bottom: 0.3rem;
+}
+
+.promo-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.promo-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.promo-desc {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Day-specific accent colors */
+.promo-card[data-day="monday"] { border-left: 5px solid #E74C3C; }
+.promo-card[data-day="tuesday"] { border-left: 5px solid #F39C12; }
+.promo-card[data-day="wednesday"] { border-left: 5px solid #27AE60; }
+.promo-card[data-day="thursday"] { border-left: 5px solid #3498DB; }
+.promo-card[data-day="friday"] { border-left: 5px solid #9B59B6; }
+.promo-card[data-day="saturday"] { border-left: 5px solid #E67E22; }
+.promo-card[data-day="sunday"] { border-left: 5px solid #1ABC9C; }
+
+/* =====================
+   ADD-ONS / DRINKS
+   ===================== */
+.addons-section {
+  background: linear-gradient(135deg, var(--dough) 0%, var(--dough-light) 100%);
+}
+
+.addons-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.addons-image {
+  text-align: center;
+}
+
+.addons-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+  transition: var(--transition);
+}
+
+.addons-image img:hover {
+  transform: rotate(-2deg) scale(1.03);
+}
+
+.addons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.addon-item {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.addon-item:hover {
+  border-color: var(--cheese);
+  transform: translateX(8px);
+}
+
+.addon-item.selected {
+  border-color: var(--sauce);
+  background: #FFF5F5;
+}
+
+.addon-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.addon-emoji {
+  font-size: 2rem;
+}
+
+.addon-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.addon-price {
+  font-family: 'Fredoka One', cursive;
+  color: var(--sauce);
+  font-size: 1.1rem;
+}
+
+.addon-add-btn {
+  background: var(--cheese);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addon-add-btn:hover {
+  background: var(--sauce);
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+.addon-add-btn.added {
+  background: var(--olive);
+  color: var(--white);
+}
+
+/* =====================
+   LOCATION SECTION
+   ===================== */
+.location-section {
+  background: var(--white);
+}
+
+.location-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.location-image img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+}
+
+.location-info h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.6rem;
+  color: var(--sauce);
+  margin-bottom: 1rem;
+}
+
+.location-info p {
+  color: var(--text-medium);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.location-details {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.location-details li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.location-details li span {
+  font-size: 1.3rem;
+}
+
+/* =====================
+   PACKAGING SECTION
+   ===================== */
+.packaging-section {
+  background: linear-gradient(135deg, var(--dough) 0%, var(--dough-light) 100%);
+}
+
+.packaging-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.packaging-image {
+  text-align: center;
+}
+
+.packaging-image img {
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+  transition: var(--transition);
+}
+
+.packaging-image img:hover {
+  transform: rotate(3deg) scale(1.05);
+}
+
+.packaging-info h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.6rem;
+  color: var(--sauce);
+  margin-bottom: 1rem;
+}
+
+.packaging-info p {
+  color: var(--text-medium);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.packaging-features {
+  list-style: none;
+}
+
+.packaging-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.packaging-features li span {
+  font-size: 1.2rem;
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+.footer {
+  background: var(--text-dark);
+  color: var(--dough);
+  padding: 3rem 2rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--cheese);
+  margin-bottom: 0.8rem;
+}
+
+.footer-brand p {
+  color: var(--dough-dark);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-links h4,
+.footer-hours h4 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--sauce-light);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links a {
+  color: var(--dough-dark);
+  text-decoration: none;
+  display: block;
+  padding: 4px 0;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--cheese);
+  padding-left: 8px;
+}
+
+.footer-hours p {
+  color: var(--dough-dark);
+  font-size: 0.95rem;
+  padding: 2px 0;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* =====================
+   TOAST NOTIFICATION
+   ===================== */
+.toast-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: var(--text-dark);
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-heavy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-left: 4px solid var(--cheese);
+}
+
+.toast.leaving {
+  animation: toastOut 0.3s ease-in forwards;
+}
+
+@keyframes toastIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+/* =====================
+   CART FLOATING BUTTON
+   ===================== */
+.cart-fab {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 1500;
+  background: var(--sauce);
+  color: var(--white);
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-heavy);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-fab:hover {
+  transform: scale(1.1);
+  background: var(--sauce-dark);
+}
+
+.cart-fab .cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--cheese);
+  color: var(--text-dark);
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.8rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =====================
+   ORDER CONFIRMATION MODAL
+   ===================== */
+.order-success {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.order-success .success-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.order-success h2 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--sauce);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.order-success p {
+  color: var(--text-medium);
+  margin-bottom: 1.5rem;
+}
+
+.order-success .demo-badge {
+  display: inline-block;
+  background: var(--cheese);
+  color: var(--text-dark);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* =====================
+   ANIMATIONS
+   ===================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation for children */
+.stagger-children > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { transition-delay: 0.6s; }
+.stagger-children > *:nth-child(7) { transition-delay: 0.7s; }
+
+/* Pizza spin on hover */
+.pizza-spin {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pizza-spin:hover {
+  transform: rotate(15deg);
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (max-width: 992px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--dough);
+    flex-direction: column;
+    padding: 100px 2rem 2rem;
+    gap: 4px;
+    transition: right 0.4s ease;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-links a {
+    padding: 12px 16px;
+    font-size: 1.05rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .addons-container,
+  .location-container,
+  .packaging-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .hero-pizza-showcase {
+    gap: 1rem;
+  }
+
+  .hero-pizza-item {
+    width: 85px;
+    height: 85px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+  }
+
+  .promos-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.3rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .promos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-pizza-item {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cart-fab {
+    bottom: 15px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .toast-container {
+    bottom: 15px;
+    right: 15px;
+    left: 15px;
+  }
+}
