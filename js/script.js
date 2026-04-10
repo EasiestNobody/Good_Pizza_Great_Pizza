@@ -439,11 +439,9 @@ function initOrderForm() {
           <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="#FFF8ED" stroke="#27AE60" stroke-width="2"/><polyline points="8 12 11 15 16 9" stroke="#27AE60" stroke-width="2.5"/></svg>
         </span>
         <h2>Order Placed!</h2>
-        <div class="demo-badge">${SVG.gamepad} Demo Only</div>
         <p><strong>Thank you, ${name}!</strong></p>
         <p>Your order of <strong>${orderItems}</strong> will be delivered to <strong>${address}</strong>.</p>
         <p style="font-family:'Fredoka One',cursive;color:var(--sauce);font-size:1.5rem;margin:1rem 0;">Total: ₱${total}</p>
-        <p style="color:var(--text-light);font-size:0.9rem;">This is a simulated order. No real data is processed.</p>
         <button class="btn btn-primary" style="margin-top:1.5rem;" onclick="closeModal('order-success-modal'); clearCart(); document.getElementById('order-form').reset();">
           ${SVG.pizza} Awesome!
         </button>
